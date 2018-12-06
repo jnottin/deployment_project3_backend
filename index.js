@@ -4,20 +4,11 @@ const cors = require("cors");
 const Residential = require("./models/residential.js");
 const Shelter = require("./models/shelter.js");
 const Guest = require("./models/guest.js");
+const port = process.env.PORT || 3010;
+
 
 const app = express();
 
-
-//deployment stuff
-// app.use(express.static(`${__dirname}/../build`));
-// const path = require('path')
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../build/index.html'));
-// })
-
-//
-
-app.set("port", process.env.PORT || 3007);
 app.use(parser.json());
 app.use(cors());
 
@@ -114,4 +105,8 @@ app.delete("/deleteShelter/:id", (req, res) => {
   });
 });
 
-app.listen(3010, () => { });
+app.set('port', process.env.PORT || 3010)
+
+app.listen(app.get('port'), () => {
+  console.log(`✅ PORT: ${app.get('port')} 🌟`)
+})
