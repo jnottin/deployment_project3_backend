@@ -2,7 +2,7 @@ const express = require("express");
 const parser = require("body-parser");
 const cors = require("cors");
 const Residential = require("./models/residential.js");
-const Shelter = require("./models/shelter.js");
+const Shelter = require("./models/shelters.js");
 const Guest = require("./models/guest.js");
 const port = process.env.PORT || 3010;
 
