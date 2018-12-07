@@ -17,6 +17,7 @@ app.use(cors());
 //   res.sendFile(__dirname + "/client/build/index.html");
 // });
 
+// GET request for shelters
 app.get("/api/roomKind", (req, res) => {
   Shelter.find()
     .then(shelter => {
@@ -55,6 +56,7 @@ app.post("/project3roomKind/residences", (req, res) => {
   });
 });
 
+// GET request for residence
 app.get("/api/roomKind/residences", (req, res) => {
   Residential.find()
     .then(resident => {
@@ -65,6 +67,7 @@ app.get("/api/roomKind/residences", (req, res) => {
     });
 });
 
+// PUT request to update form
 app.put("/editShelter/:id", (req, res) => {
   console.log({ _id: req.params.id });
   Shelter.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
@@ -72,6 +75,8 @@ app.put("/editShelter/:id", (req, res) => {
     res.json(post);
   });
 });
+
+// PUT request to update form
 app.put("/editResidence/:id", (req, res) => {
   console.log({ _id: req.params.id });
   Residential.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
@@ -79,6 +84,7 @@ app.put("/editResidence/:id", (req, res) => {
     res.json(post);
   });
 });
+
 // Reserve resident
 app.delete("/reserveResidence/:id", (req, res) => {
   Residential.findByIdAndRemove(req.params.id, req.body, function(err, post) {
@@ -104,6 +110,7 @@ app.delete("/deleteShelter/:id", (req, res) => {
   });
 });
 
+// Environment
 app.set("port", process.env.PORT || 3010);
 
 app.listen(app.get("port"), () => {
