@@ -6,17 +6,16 @@ const Shelter = require("./models/shelter.js");
 const Guest = require("./models/guest.js");
 const port = process.env.PORT || 3010;
 
-
 const app = express();
 
 app.use(parser.json());
 app.use(cors());
 
-app.use(express.static("client/build"));
+// app.use(express.static("client/build"));
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/client/build/index.html");
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(__dirname + "/client/build/index.html");
+// });
 
 app.get("/api/roomKind", (req, res) => {
   Shelter.find()
@@ -68,21 +67,21 @@ app.get("/api/roomKind/residences", (req, res) => {
 
 app.put("/editShelter/:id", (req, res) => {
   console.log({ _id: req.params.id });
-  Shelter.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  Shelter.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 app.put("/editResidence/:id", (req, res) => {
   console.log({ _id: req.params.id });
-  Residential.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  Residential.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 // Reserve resident
 app.delete("/reserveResidence/:id", (req, res) => {
-  Residential.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Residential.findByIdAndRemove(req.params.id, req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
@@ -90,7 +89,7 @@ app.delete("/reserveResidence/:id", (req, res) => {
 
 //Delete Residence once reserved
 app.delete("/deleteResidence/:id", (req, res) => {
-  Residential.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Residential.findByIdAndRemove(req.params.id, req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
@@ -99,14 +98,14 @@ app.delete("/deleteResidence/:id", (req, res) => {
 //Delete Shelters once reserved
 app.delete("/deleteShelter/:id", (req, res) => {
   console.log({ _id: req.params.id });
-  Shelter.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  Shelter.findByIdAndRemove(req.params.id, req.body, function(err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-app.set('port', process.env.PORT || 3010)
+app.set("port", process.env.PORT || 3010);
 
-app.listen(app.get('port'), () => {
-  console.log(`✅ PORT: ${app.get('port')} 🌟`)
-})
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
+});
